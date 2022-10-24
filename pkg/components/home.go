@@ -10,6 +10,10 @@ import (
 	"github.com/pojntfx/keystoregaen/pkg/utils"
 )
 
+const (
+	auditStorageKey = "keystoregaenAudit"
+)
+
 type Home struct {
 	app.Compo
 
@@ -17,6 +21,10 @@ type Home struct {
 	loading bool
 
 	loadingReady chan struct{}
+
+	removeEventListeners []func()
+
+	showAuditModal bool
 }
 
 func (c *Home) Render() app.UI {
@@ -91,6 +99,35 @@ func (c *Home) Render() app.UI {
 				},
 			),
 			app.If(
+				c.showAuditModal,
+				&components.ConfirmationModal{
+					ID:    "audit-modal",
+					Icon:  "fas fa-exclamation-triangle",
+					Title: "keystoregaen has not yet been audited!",
+					Class: "pf-m-warning",
+					Body:  "While we try to make keystoregaen as secure as possible, it has not yet undergone a formal security audit by a third party. Please keep this in mind if you use it for security-critical applications.",
+
+					ActionLabel: "Yes, I understand",
+					ActionClass: "pf-m-warning",
+
+					CancelLink:  "https://en.wikipedia.org/wiki/Information_security_audit",
+					CancelLabel: "What is an audit?",
+
+					OnClose: func() {
+						c.showAuditModal = false
+						c.writeToLocalStorage()
+
+						c.Update()
+					},
+					OnAction: func() {
+						c.showAuditModal = false
+						c.writeToLocalStorage()
+
+						c.Update()
+					},
+				},
+			),
+			app.If(
 				c.loading,
 				&LoadingModal{
 					Title:       "Generating Keystore",
@@ -142,6 +179,34 @@ func (c *Home) download(content []byte, name string, mimetype string) {
 	link.Call("click")
 }
 
+func (c *Home) readFromLocalStorage() {
+	if showAuditModal := app.Window().Get("localStorage").Call("getItem", auditStorageKey); showAuditModal.IsNull() || showAuditModal.IsUndefined() || showAuditModal.String() == "true" {
+		c.showAuditModal = true
+	}
+}
+
+func (c *Home) writeToLocalStorage() {
+	app.Window().Get("localStorage").Call("setItem", auditStorageKey, c.showAuditModal)
+}
+
 func (c *Home) OnMount(ctx app.Context) {
 	c.loadingReady = make(chan struct{})
+
+	c.readFromLocalStorage()
+
+	c.removeEventListeners = []func(){
+		app.Window().AddEventListener("storage", func(ctx app.Context, e app.Event) { // This event only fires in other tabs; it does not lead to local race conditions with c.writeKeysToLocalStorage
+			c.readFromLocalStorage()
+
+			c.Update()
+		}),
+	}
+}
+
+func (c *Home) OnDismount() {
+	if c.removeEventListeners != nil {
+		for _, clearListener := range c.removeEventListeners {
+			clearListener()
+		}
+	}
 }
