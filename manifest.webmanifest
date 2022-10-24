@@ -1,0 +1,22 @@
+{
+  "short_name": "keystoregaen",
+  "name": "keystoregaen",
+  "description": "Generate Java keystores in your browser.",
+  "icons": [
+    {
+      "src": "/keystoregaen/web/default.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/keystoregaen/web/large.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "scope": "/keystoregaen/",
+  "start_url": "/keystoregaen/",
+  "background_color": "#151515",
+  "theme_color": "#151515",
+  "display": "standalone"
+}

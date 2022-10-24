@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="author" content="Felicitas Pojtinger">
+<meta name="description" content="Generate Java keystores in your browser.">
+<meta name="keywords" content="java, jkcs, keystore, android, android-certificate">
+<meta content="#151515" name="theme-color">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover">
+<meta property="og:url" content="http://127.0.0.1:34623/">
+<meta property="og:title" content="keystoregaen">
+<meta property="og:description" content="Generate Java keystores in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:image" content>
+<title>
+keystoregaen
+</title>
+<link rel="icon" href="/keystoregaen/web/default.png">
+<link href="/keystoregaen/web/default.png" rel="apple-touch-icon">
+<link rel="manifest" href="/keystoregaen/manifest.webmanifest">
+<link type="text/css" rel="stylesheet" href="/keystoregaen/app.css">
+<script defer="true" src="/keystoregaen/wasm_exec.js"></script>
+<script src="/keystoregaen/app.js" defer="true"></script>
+<link type="text/css" rel="stylesheet" href="/keystoregaen/web/main.css">
+<meta property="og:url" content="https://pojntfx.github.io/keystoregaen/">
+<meta property="og:title" content="keystoregaen">
+<meta property="og:description" content="Generate Java keystores in your browser.">
+<meta property="og:image" content="https://pojntfx.github.io/keystoregaen/web/default.png">
+</head>
+<body>
+<div>
+<aside id="app-wasm-loader" class="goapp-app-info">
+<img id="app-wasm-loader-icon" class="goapp-logo goapp-spin" src="/keystoregaen/web/default.png">
+<p id="app-wasm-loader-label" class="goapp-label">
+Generate Java keystores in your browser.
+</p>
+</aside>
+<div id="app-pre-render">
+<div class="pf-c-page">
+<a class="pf-c-skip-to-content pf-c-button pf-m-primary" href="#keystoregaen-main">
+Skip to content
+</a>
+<header class="pf-c-page__header">
+<div class="pf-c-page__header-brand">
+<a class="pf-c-page__header-brand-link" href="#">
+<img src="/keystoregaen/web/logo-light.png" alt="Logo" class="pf-c-brand">
+</a>
+</div>
+<div class="pf-c-page__header-tools">
+<div class="pf-c-page__header-tools-group">
+<div class="pf-c-page__header-tools-item">
+<a href="https://github.com/pojntfx/keystoregaen" target="_blank" class="pf-c-button pf-m-plain" aria-label="Help">
+<i aria-hidden="true" class="pf-icon fas fa-question-circle"></i>
+</a>
+</div>
+</div>
+</div>
+</header>
+<main id="keystoregaen-main" tabindex="-1" class="pf-c-page__main pf-c-page__main">
+<div class="pf-c-page__main-section pf-m-fill pf-l-flex pf-m-justify-content-center pf-m-align-items-center">
+<div class="pf-c-card keystore-generation-form">
+<div class="pf-c-card__body">
+<form class="pf-c-form">
+<div class="pf-c-form__group">
+<div class="pf-c-form__group-label">
+<label class="pf-c-form__label" for="storepass-input">
+<span class="pf-c-form__label-text">
+Keystore password
+</span>
+<span class="pf-c-form__label-required" aria-hidden="true">
+*
+</span>
+</label>
+</div>
+<div class="pf-c-form__group-control">
+<input required="true" type="password" id="storepass-input" name="storepass-input" value class="pf-c-form-control">
+</div>
+</div>
+<div class="pf-c-form__group">
+<div class="pf-c-form__group-label">
+<label class="pf-c-form__label" for="keypass-input">
+<span class="pf-c-form__label-text">
+Certificate password
+</span>
+<span class="pf-c-form__label-required" aria-hidden="true">
+*
+</span>
+</label>
+</div>
+<div class="pf-c-form__group-control">
+<input required="true" type="password" id="keypass-input" name="keypass-input" value class="pf-c-form-control">
+</div>
+</div>
+<div class="pf-c-form__group">
+<div class="pf-c-form__group-label">
+<label class="pf-c-form__label" for="alias-input">
+<span class="pf-c-form__label-text">
+Certificate alias
+</span>
+<span class="pf-c-form__label-required" aria-hidden="true">
+*
+</span>
+</label>
+</div>
+<div class="pf-c-form__group-control">
+<input type="text" id="alias-input" name="alias-input" value class="pf-c-form-control" required="true">
+</div>
+</div>
+<div class="pf-c-form__group">
+<div class="pf-c-form__group-label">
+<label class="pf-c-form__label" for="cname-input">
+<span class="pf-c-form__label-text">
+Certificate CNAME
+</span>
+<span class="pf-c-form__label-required" aria-hidden="true">
+*
+</span>
+</label>
+</div>
+<div class="pf-c-form__group-control">
+<input name="cname-input" value class="pf-c-form-control" required="true" type="text" id="cname-input">
+</div>
+</div>
+<div class="pf-c-form__group">
+<div class="pf-c-form__group-label">
+<label for="validity-input" class="pf-c-form__label">
+<span class="pf-c-form__label-text">
+Certificate validity
+</span>
+<span class="pf-c-form__label-required" aria-hidden="true">
+*
+</span>
+</label>
+</div>
+<div class="pf-c-form__group-control">
+<input id="validity-input" name="validity-input" aria-describedby="validity-input-helper" value class="pf-c-form-control" required="true" type="number">
+<p id="validity-input-helper" aria-live="polite" class="pf-c-form__helper-text">
+Days from now until certificate is no longer valid.
+</p>
+</div>
+</div>
+<div class="pf-c-form__group">
+<div class="pf-c-form__group-label">
+<label for="rsa-bits-input" class="pf-c-form__label">
+<span class="pf-c-form__label-text">
+RSA bits
+</span>
+<span class="pf-c-form__label-required" aria-hidden="true">
+*
+</span>
+</label>
+</div>
+<div class="pf-c-form__group-control">
+<input aria-describedby="rsa-bits-input-helper" value class="pf-c-form-control" required="true" type="number" id="rsa-bits-input" name="rsa-bits-input">
+<p aria-live="polite" class="pf-c-form__helper-text" id="rsa-bits-input-helper">
+Bits to generate the RSA private key with.
+</p>
+</div>
+</div>
+<div class="pf-c-form__group pf-m-action pf-u-mt-0">
+<div class="pf-c-form__group-control">
+<div class="pf-c-form__actions">
+<button class="pf-c-button pf-m-primary" type="submit">
+Generate keystore
+</button>
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</div>
+</body>
+</html>
