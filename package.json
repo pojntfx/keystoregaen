@@ -1,0 +1,22 @@
+{
+  "name": "@pojntfx/keystoregaen",
+  "version": "0.0.1",
+  "description": "Generate Java keystores in your browser.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pojntfx/keystoregaen.git"
+  },
+  "author": "Felicitas Pojtinger <felicitas@pojtinger.com>",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/pojntfx/keystoregaen/issues"
+  },
+  "homepage": "https://github.com/pojntfx/keystoregaen#readme",
+  "dependencies": {
+    "@patternfly/patternfly": "^4.217.1"
+  }
+}
