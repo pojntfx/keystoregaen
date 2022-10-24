@@ -1,6 +1,8 @@
 package components
 
 import (
+	"log"
+
 	"github.com/maxence-charriere/go-app/v9/pkg/app"
 )
 
@@ -27,15 +29,11 @@ func (c *Home) Render() app.UI {
 					app.Div().
 						Class("pf-c-page__main-section", "pf-m-fill", "pf-l-flex", "pf-m-justify-content-center", "pf-m-align-items-center").
 						Body(
-							app.Div().
-								Class("pf-l-flex pf-m-column pf-m-justify-content-center pf-m-align-items-center pf-m-space-items-xl").
-								Body(
-									app.H1().
-										Class("pf-u-font-size-3xl pf-u-text-align-center pf-u-mt-md").
-										Body(
-											app.Text("Hello, world!"),
-										),
-								),
+							&KeystoreGenerationForm{
+								OnSubmit: func(storepass, keypass, alias, cname string, validity, bits uint32) {
+									log.Println(storepass, keypass, alias, cname, validity, bits)
+								},
+							},
 						),
 				),
 		)
