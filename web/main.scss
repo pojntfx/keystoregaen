@@ -1,0 +1,57 @@
+@import "node_modules/@patternfly/patternfly/sass-utilities/all.scss";
+
+$pf-global--font-path: "fonts";
+$fa-font-path: $pf-global--font-path + "/webfonts";
+
+@import "node_modules/@patternfly/patternfly/patternfly.scss";
+@import "node_modules/@patternfly/patternfly/patternfly-addons.scss";
+
+.pf-x-m-backdrop-blur {
+  backdrop-filter: blur(0.5rem);
+  -webkit-backdrop-filter: blur(0.5rem);
+}
+
+.pf-c-backdrop {
+  @extend .pf-x-m-backdrop-blur;
+}
+
+.pf-x-m-background-gradient {
+  background: linear-gradient(
+    0deg,
+    #ffffff70,
+    33%,
+    var(--pf-global--BackgroundColor--dark-100)
+  );
+}
+
+.pf-x-m-background-transparent {
+  background: transparent;
+}
+
+.pf-x-m-background-unsplash {
+  background-image: url(https://source.unsplash.com/random?keys) !important;
+  background-position: 50% !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+}
+
+.pf-c-page {
+  @extend .pf-x-m-background-unsplash;
+}
+
+.pf-c-page__main-section {
+  @extend .pf-x-m-background-transparent;
+}
+
+.pf-c-page__main {
+  @extend .pf-x-m-background-gradient;
+}
+
+.keystore-generation-form {
+  @media only screen and (min-width: 600px) {
+    min-width: 500px;
+  }
+}
