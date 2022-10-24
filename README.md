@@ -4,6 +4,8 @@
 
 Generate Java keystores in your browser.
 
+⚠️ keystoregaen has not yet been audited! While we try to make keystoregaen as secure as possible, it has not yet undergone a formal security audit by a third party. Please keep this in mind if you use it for security-critical applications. ⚠️
+
 [![hydrun CI](https://github.com/pojntfx/keystoregaen/actions/workflows/hydrun.yaml/badge.svg)](https://github.com/pojntfx/keystoregaen/actions/workflows/hydrun.yaml)
 ![Go Version](https://img.shields.io/badge/go%20version-%3E=1.18-61CFDD.svg)
 [![Go Reference](https://pkg.go.dev/badge/github.com/pojntfx/keystoregaen.svg)](https://pkg.go.dev/github.com/pojntfx/keystoregaen)
