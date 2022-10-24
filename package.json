@@ -18,5 +18,8 @@
   "homepage": "https://github.com/pojntfx/keystoregaen#readme",
   "dependencies": {
     "@patternfly/patternfly": "^4.217.1"
+  },
+  "devDependencies": {
+    "sass": "^1.55.0"
   }
 }

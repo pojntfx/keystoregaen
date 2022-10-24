@@ -28,9 +28,9 @@ func main() {
 
 	// Define the handler
 	h := &app.Handler{
-		Title:           "Keystoregaen",
-		Name:            "Keystoregaen",
-		ShortName:       "Keystoregaen",
+		Title:           "keystoregaen",
+		Name:            "keystoregaen",
+		ShortName:       "keystoregaen",
 		Description:     "Generate Java keystores in your browser.",
 		LoadingLabel:    "Generate Java keystores in your browser.",
 		Author:          "Felicitas Pojtinger",
@@ -44,10 +44,12 @@ func main() {
 			"java",
 			"jkcs",
 			"keystore",
+			"android",
+			"android-certificate",
 		},
 		RawHeaders: []string{
 			`<meta property="og:url" content="https://pojntfx.github.io/keystoregaen/">`,
-			`<meta property="og:title" content="Keystoregaen">`,
+			`<meta property="og:title" content="keystoregaen">`,
 			`<meta property="og:description" content="Generate Java keystores in your browser.">`,
 			`<meta property="og:image" content="https://pojntfx.github.io/keystoregaen/web/default.png">`,
 		},
