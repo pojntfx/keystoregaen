@@ -13,7 +13,10 @@ import (
 type Home struct {
 	app.Compo
 
-	err error
+	err     error
+	loading bool
+
+	loadingReady chan struct{}
 }
 
 func (c *Home) Render() app.UI {
@@ -39,7 +42,11 @@ func (c *Home) Render() app.UI {
 								OnSubmit: func(storepass, keypass, alias, cname string, validity, bits uint32) {
 									out := bytes.NewBuffer([]byte{})
 
+									c.setLoading(true)
+
 									go func() {
+										<-c.loadingReady
+
 										log.Println("Generating keystore ...")
 
 										if err := utils.GenerateKeystore(
@@ -57,6 +64,8 @@ func (c *Home) Render() app.UI {
 										}
 
 										c.download(out.Bytes(), "keystoregaen.jks", "application/octet-stream")
+
+										c.setLoading(false)
 									}()
 								},
 							},
@@ -81,6 +90,17 @@ func (c *Home) Render() app.UI {
 					},
 				},
 			),
+			app.If(
+				c.loading,
+				&LoadingModal{
+					Title:       "Generating Keystore",
+					Description: "Calculating primes ...",
+
+					OnReady: func() {
+						c.loadingReady <- struct{}{}
+					},
+				},
+			),
 		)
 }
 
@@ -94,6 +114,12 @@ func (c *Home) panic(err error) {
 
 func (c *Home) recover() {
 	c.err = nil
+}
+
+func (c *Home) setLoading(loading bool) {
+	c.loading = loading
+
+	c.Update()
 }
 
 func (c *Home) OnAppUpdate(ctx app.Context) {
@@ -114,4 +140,8 @@ func (c *Home) download(content []byte, name string, mimetype string) {
 	link.Set("href", app.Window().Get("URL").Call("createObjectURL", blob))
 	link.Set("download", name)
 	link.Call("click")
+}
+
+func (c *Home) OnMount(ctx app.Context) {
+	c.loadingReady = make(chan struct{})
 }
