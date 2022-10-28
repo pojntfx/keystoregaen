@@ -5,7 +5,7 @@ var goappNav = function () {};
 var goappOnUpdate = function () {};
 var goappOnAppInstallChange = function () {};
 
-const goappEnv = {"GOAPP_INTERNAL_URLS":"null","GOAPP_ROOT_PREFIX":"/keystoregaen","GOAPP_STATIC_RESOURCES_URL":"/keystoregaen","GOAPP_VERSION":"e71ed42aad696a848773c6add3b916d1537b23f3"};
+const goappEnv = {"GOAPP_INTERNAL_URLS":"null","GOAPP_ROOT_PREFIX":"/keystoregaen","GOAPP_STATIC_RESOURCES_URL":"/keystoregaen","GOAPP_VERSION":"47665b96e1487f2b3423e3bdd0e57e5f5216b086"};
 const goappLoadingLabel = "Generate Java keystores in your browser.";
 const goappWasmContentLengthHeader = "";
 

@@ -1,8 +1,8 @@
-const cacheName = "app-" + "e71ed42aad696a848773c6add3b916d1537b23f3";
+const cacheName = "app-" + "47665b96e1487f2b3423e3bdd0e57e5f5216b086";
 const resourcesToCache = ["/keystoregaen","/keystoregaen/app.css","/keystoregaen/app.js","/keystoregaen/manifest.webmanifest","/keystoregaen/wasm_exec.js","/keystoregaen/web/app.wasm","/keystoregaen/web/default.png","/keystoregaen/web/large.png","/keystoregaen/web/main.css"];
 
 self.addEventListener("install", (event) => {
-  console.log("installing app worker e71ed42aad696a848773c6add3b916d1537b23f3");
+  console.log("installing app worker 47665b96e1487f2b3423e3bdd0e57e5f5216b086");
 
   event.waitUntil(
     caches
@@ -28,7 +28,7 @@ self.addEventListener("activate", (event) => {
       );
     })
   );
-  console.log("app worker e71ed42aad696a848773c6add3b916d1537b23f3 is activated");
+  console.log("app worker 47665b96e1487f2b3423e3bdd0e57e5f5216b086 is activated");
 });
 
 self.addEventListener("fetch", (event) => {
