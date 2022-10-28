@@ -2,6 +2,7 @@ package components
 
 import (
 	"bytes"
+	"encoding/base64"
 	"log"
 	"time"
 
@@ -23,6 +24,11 @@ type Home struct {
 	loadingReady chan struct{}
 
 	removeEventListeners []func()
+
+	keystore []byte
+
+	exportKeystoreModalOpen bool
+	viewKeystoreModalOpen   bool
 
 	showAuditModal bool
 }
@@ -71,9 +77,10 @@ func (c *Home) Render() app.UI {
 											return
 										}
 
-										c.download(out.Bytes(), "keystoregaen.jks", "application/octet-stream")
+										c.keystore = out.Bytes()
 
 										c.setLoading(false)
+										c.exportKeystoreModalOpen = true
 									}()
 								},
 							},
@@ -135,6 +142,49 @@ func (c *Home) Render() app.UI {
 
 					OnReady: func() {
 						c.loadingReady <- struct{}{}
+					},
+				},
+			),
+			app.If(
+				c.exportKeystoreModalOpen,
+				&ExportKeystoreModal{
+					OnDownloadKey: func(base64encode bool) {
+						if base64encode {
+							c.download([]byte(base64.StdEncoding.EncodeToString(c.keystore)), "keystoregaen.jks.txt", "text/plain")
+
+							return
+						}
+
+						c.download(c.keystore, "keystoregaen.jks", "application/octet-stream")
+					},
+					OnViewKey: func() {
+						c.exportKeystoreModalOpen = false
+						c.viewKeystoreModalOpen = true
+					},
+
+					OnOK: func() {
+						c.exportKeystoreModalOpen = false
+
+						c.Update()
+					},
+				},
+			),
+			app.If(
+				c.viewKeystoreModalOpen,
+				&components.TextOutputModal{
+					Title: "View Keystore",
+					Tabs: []components.TextOutputModalTab{
+						{
+							Language: "text/plain",
+							Title:    "keystoregaen.jks.txt",
+							Body:     base64.StdEncoding.EncodeToString(c.keystore),
+						},
+					},
+					OnClose: func() {
+						c.viewKeystoreModalOpen = false
+						c.exportKeystoreModalOpen = true
+
+						c.Update()
 					},
 				},
 			),
